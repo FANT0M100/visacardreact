@@ -1,6 +1,6 @@
 
 
-const UserForm = ({ cardNumberHandler, cardHolderHandler, cardMMHandler, cardYYHandler }) => {
+const UserForm = ({ cardNumberHandler, cardHolderHandler, cardMMHandler, cardYYHandler, cardCVVHandler, cardViewHandler }) => {
            
         return (
           <form className="w-3/4 bg-white shadow-lg rounded-2xl flex flex-col">
@@ -39,7 +39,9 @@ const UserForm = ({ cardNumberHandler, cardHolderHandler, cardMMHandler, cardYYH
                 </div>
                 <div className="w-1/4 flex flex-col">
                     <label htmlFor="cardSVV" className="uppercase text-sm mb-2 text-gray-500 font-medium">CVV</label>
-                    <input 
+                    <input onChange={(e) => cardCVVHandler(e.target.value)}
+                     onFocus={() => cardViewHandler('Back')}
+                     onBlur={() => cardViewHandler('Front')}
                      className="border border-gray-500 rounded-lg focus:outline-none px-4 py-2" 
                      type="text" 
                      name="cardSVV" 
