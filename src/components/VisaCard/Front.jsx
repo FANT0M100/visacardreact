@@ -1,6 +1,10 @@
+import { useContext } from "react";
+import { StoreContextVisaCard } from "../../App";
 
 
-const CardFrontView = ({ cardNumber, cardHolder, cardMM, cardYY }) => {
+const CardFrontView = () => {
+
+    const {stateVisaCard} = useContext(StoreContextVisaCard)
 
     return(
         <div className="w-[425px] h-[270px] bg-card rounded-2xl flex flex-col justify-between">
@@ -14,13 +18,13 @@ const CardFrontView = ({ cardNumber, cardHolder, cardMM, cardYY }) => {
             </div>
             <div className="px-6 py-4">
                 <p className="text-white font-black italic">Card Number</p>
-                <p className="text-white text-2xl tracking-wider">{ cardNumber }</p>
+                <p className="text-white text-2xl tracking-wider">{ stateVisaCard.cardNumber }</p>
             </div>
             <div className="flex justify-between items-center p-4">
-                <p className="text-white tracking-widest text-xl px-2">{cardHolder}</p>
+                <p className="text-white tracking-widest text-xl px-2">{stateVisaCard.cardHolder}</p>
                 <div className="flex justify-between items-center flex-col">
                     <p className="text-white">Valid Thru</p>
-                    <p className="text-white">{cardMM}/{cardYY}</p>
+                    <p className="text-white">{stateVisaCard.cardMM}/{stateVisaCard.cardYY}</p>
                 </div>
             </div>
         </div>

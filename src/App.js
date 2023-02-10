@@ -1,31 +1,26 @@
-import { useState } from "react";
+import { createContext, useReducer } from "react";
 import UserForm from "./components/Form";
 import CardBackView from "./components/VisaCard/Back";
 import CardFrontView from "./components/VisaCard/Front";
+import { visaCardReducer } from "./state/Reducer/VisaCard";
+import { visaCardState } from "./state/State/VisaCard";
 
+
+export const StoreContextVisaCard = createContext({})
 
 function App() {
 
-  const [cardNumber, setCardNumber] = useState()
-  const [cardHolder, setCardHolder] = useState()
-  const [cardMM, setCardMM] = useState()
-  const [cardYY, setCardYY] = useState()
-  const [cardCVV, setCardCVV] = useState()
-  const [cardView, setCardView] = useState('Front')
+  const [stateVisaCard, dispachVisacard] = useReducer(visaCardReducer, visaCardState)
+  
 
   return (
+   <StoreContextVisaCard.Provider value={{stateVisaCard, dispachVisacard}}>
     <div className="h-screen flex flex-col justify-center items-center">
-      {cardView === 'Front' && <CardFrontView cardNumber={cardNumber} cardHolder={cardHolder} cardMM={cardMM} cardYY={cardYY}/>}
-      {cardView === 'Back' && <CardBackView cardCVV={cardCVV}/>}
-      <UserForm 
-       cardNumberHandler={setCardNumber}
-       cardHolderHandler={setCardHolder}
-       cardMMHandler={setCardMM}
-       cardYYHandler={setCardYY}
-       cardCVVHandler={setCardCVV}
-       cardViewHandler={setCardView}
-      />
+      {stateVisaCard.cardView === 'Front' && <CardFrontView />}
+      {stateVisaCard.cardView === 'Back' && <CardBackView />}
+      <UserForm />
     </div>
+    </StoreContextVisaCard.Provider>  
   );
 }
 
