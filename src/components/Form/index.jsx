@@ -1,12 +1,12 @@
 
 
-const UserForm = () => {
+const UserForm = ({ cardNumberHandler, cardHolderHandler, cardMMHandler, cardYYHandler }) => {
            
         return (
           <form className="w-3/4 bg-white shadow-lg rounded-2xl flex flex-col">
             <div className="flex flex-col px-16 py-4">
                 <label htmlFor="cardNumber" className="uppercase text-sm mb-2 text-gray-500 font-medium">Card Number</label>
-                <input 
+                <input onChange={(e) => cardNumberHandler(e.target.value)}
                 className="border border-gray-500 rounded-lg focus:outline-none px-4 py-2" 
                 type="text" 
                 name="cardNumber" 
@@ -14,7 +14,7 @@ const UserForm = () => {
             </div>
             <div className="flex flex-col px-16 py-4">
                 <label htmlFor="cardHolder" className="uppercase text-sm mb-2 text-gray-500 font-medium">Card Name</label>
-                <input 
+                <input onChange={(e) => cardHolderHandler(e.target.value)}
                 className="border border-gray-500 rounded-lg focus:outline-none px-4 py-2" 
                 type="text" 
                 name="cardHolder" 
@@ -23,7 +23,7 @@ const UserForm = () => {
             <div className="flex justify-between px-16 py-4">
                 <div className="w-1/4 flex flex-col">
                     <label htmlFor="cardMM" className="uppercase text-sm mb-2 text-gray-500 font-medium">Expiration MM</label>
-                    <input 
+                    <input onChange={(e) => cardMMHandler(e.target.value)}
                     className="border border-gray-500 rounded-lg focus:outline-none px-4 py-2" 
                     type="text" 
                     name="cardMM" 
@@ -31,7 +31,7 @@ const UserForm = () => {
                 </div>
                 <div className="w-1/4 flex flex-col">
                     <label htmlFor="cardYY" className="uppercase text-sm mb-2 text-gray-500 font-medium">Expiration YY</label>
-                    <input 
+                    <input onChange={(e) => cardYYHandler(e.target.value)}
                     className="border border-gray-500 rounded-lg focus:outline-none px-4 py-2" 
                     type="text" 
                     name="cardYY" 
